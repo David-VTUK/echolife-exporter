@@ -27,7 +27,7 @@ jobs:
           name: echolife-exporter
           path: /artifacts/
 
-      - name: Get env
+      - name: Get env 2
         run: env
 
   publish:
