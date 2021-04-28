@@ -6,4 +6,4 @@
 
 * EchoLife HG612 with unlocked firmware
 * The IP address of the modem defined in the environment variable `VDSL_IP`
-* Code is packaged as a Docker container - https://hub.docker.com/r/virtualthoughts/echolife-exporter
+* Code is packaged as a Docker container automatically via Github CI - https://hub.docker.com/r/virtualthoughts/echolife-exporter
