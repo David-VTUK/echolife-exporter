@@ -59,7 +59,7 @@ jobs:
           context: ./ 
           file: ./Dockerfile
           push: true
-          tags: virtualthoughts/echolife-exporter:latest,virtualthoughts/echolife-exporter:0.${{ env.GITHUB_RUN_NUMBER }}
+          tags: virtualthoughts/echolife-exporter:latest,virtualthoughts/echolife-exporter:0.${GITHUB_RUN_NUMBER}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
