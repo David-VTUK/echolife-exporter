@@ -5,6 +5,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
@@ -216,13 +217,26 @@ func new() myMetrics {
 }
 
 func Collect() {
-	url := "http://192.168.1.3/html/status/xdslStatus.asp"
+
+	//Extract VDSL modem IP from env variable $VDSL_IP
+	ipAddress := os.Getenv("VDSL_IP")
+
+	//Check to make sure it's set
+	if len(ipAddress) == 0 {
+		log.Fatal("VDSL_IP env var not set")
+		os.Exit(1)
+	}
+
+	//Construct URL string to acquire metrics from
+	url := "http://" + ipAddress + "/html/status/xdslStatus.asp"
+
+	log.Info("connecting to: ", url)
+
 	modemMetrics := new()
 
-	// Update values every 30s (simply increment them by 2)
+	// Update values every 30s
 	ticker := time.NewTicker(30 * time.Second)
 	for range ticker.C {
-		//log.Info("Updating metric values")
 
 		var client http.Client
 		resp, err := client.Get(url)
@@ -271,10 +285,12 @@ func Collect() {
 }
 
 func convertToFloat(input []byte) float64 {
-	floatvalue, err := strconv.ParseFloat(strings.Trim(string(input), `"`), 64)
+
+	//Trim the quotation marks from the string and parse the result as a float
+	floatValue, err := strconv.ParseFloat(strings.Trim(string(input), `"`), 64)
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	return floatvalue
+	return floatValue
 }
