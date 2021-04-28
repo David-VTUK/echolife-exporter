@@ -16,9 +16,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: sudo mkdir -p /artifacts/
 
-      - name: Test
-        run: go test -v ./...
-
       - name: Build
         run: sudo go build -o /artifacts/echolife-exporter
 
