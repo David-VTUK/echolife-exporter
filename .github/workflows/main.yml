@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: sudo go build -o /artifacts/echolife-exporter
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2.2.3
         with:
           name: echolife-exporter
           path: /artifacts/
@@ -33,10 +33,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v2.0.9
         with:
           name: echolife-exporter
-          path: /artifacts/
 
       -
         name: Set up QEMU
