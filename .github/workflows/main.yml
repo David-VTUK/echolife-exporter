@@ -49,11 +49,20 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push - latest
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: ./ 
+          file: ./Dockerfile
+          push: true
+          tags: virtualthoughts/echolife-exporter:latest
+
+      - name: Build and push - version
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
           file: ./Dockerfile
           push: true
           tags: virtualthoughts/echolife-exporter:0.$GITHUB_RUN_NUMBER
