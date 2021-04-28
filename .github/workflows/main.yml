@@ -36,7 +36,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: echolife-exporter
-          path: /artifacts/echolife-explorer
+          path: /artifacts/
 
       -
         name: Set up QEMU
