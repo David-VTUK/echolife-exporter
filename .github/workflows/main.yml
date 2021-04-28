@@ -39,6 +39,8 @@ jobs:
       - name: Debug
         run: ls -R
 
+      - name: Whereami
+        run: pwd
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
