@@ -36,11 +36,6 @@ jobs:
       - uses: actions/download-artifact@v2.0.9
         with:
           name: echolife-exporter
-      - name: Debug
-        run: ls -laR
-
-      - name: Whereami
-        run: pwd
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
